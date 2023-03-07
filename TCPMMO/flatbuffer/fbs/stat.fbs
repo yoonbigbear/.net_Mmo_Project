@@ -1,0 +1,31 @@
+include "common.fbs";
+include "type_code.fbs";
+
+table ChangeStateReq
+{
+	key : [int];
+	value : [long];
+}
+table ChangeStateResp
+{
+	error_code : ErrorCode = 0;
+}
+
+table StateSync
+{
+	obj_id : uint;
+	keys : [int];
+	values : [long];
+}
+
+table ChangedStatsNty
+{
+	obj_id : uint;
+	keys : [int];
+	values : [long];
+}
+
+table DeadSync
+{
+	obj_id : uint;
+}

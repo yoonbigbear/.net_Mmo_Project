@@ -1,0 +1,22 @@
+include "common.fbs";
+include "type_code.fbs";
+
+
+table TransformReq
+{
+	transform : TransformInfo;
+}
+
+table TransformResp
+{
+	cur_pos : Vec3;
+	
+	error_code : ErrorCode = 0;
+}
+
+table TransformSync
+{
+	obj_id : uint;
+	transform : TransformInfo;
+}
+

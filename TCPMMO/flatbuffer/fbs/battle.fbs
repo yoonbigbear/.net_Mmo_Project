@@ -1,0 +1,34 @@
+include "common.fbs";
+include "type_code.fbs";
+
+table AttackReq
+{
+	skill_tid : int;
+	target_obj_id : uint;
+	direction : Vec3;
+}
+
+table AttackResp
+{
+	skill_tid : int;
+	atk_pos : Vec3;
+	direction : Vec3;
+	
+	error_code : ErrorCode = 0;
+}
+
+table AttackSync
+{
+	skill_tid : int;	
+	objId : uint;
+	direction : Vec3;
+	atk_pos : Vec3;
+}
+
+table HitSync
+{
+	skill_tid : int;
+	target_obj_ids : [uint];
+	damages : [long];
+	positions : [Vec3];
+}

@@ -1,0 +1,68 @@
+enum PacketId : short
+{
+	Heartbeat = -1,
+	None = 0,
+	
+	TimeSync,
+
+	CreateCharacterReq,
+	CreateCharacterResp,
+	
+	EnterServerReq,
+	EnterServerResp,
+	EnterLobbyReq,
+	EnterLobbyResp,
+	EnterWorldReq,
+	EnterWorldResp,
+	EnterWorldSync,
+	LeaveWorldSync,
+	
+	MoveSceneReq,
+	MoveSceneResp,
+	MovePortalReq,
+	MovePortalResp,
+	
+	TransformReq,
+	TransformResp,
+	TransformSync,
+	
+	AddItemReq,
+	AddItemResp,
+	RemoveItemReq,
+	RemoveItemResp,
+	
+	TradeRequestReq,
+	TradeRequestResp,
+	TradeAcceptReq,
+	TradeAcceptResp,
+	TradeBeginSync,
+	TradeSuccessSync,
+	TradeUpdateReq,
+	TradeUpdateSync,
+	TradeCancelReq,
+	TradeCancelSync,
+	
+	AttackReq,
+	AttackResp,
+	AttackSync,
+	HitSync,
+	
+	StateSync,
+	ChangedStatsNty,
+	DeadSync,
+	
+	ChangeStateReq,
+	ChangeStateResp
+}
+enum ErrorCode : short
+{
+	UndefinedError = -1,
+	Success = 0,
+	SessionError,
+	PacketDataError,
+	DuplicatedError,
+	DatabaseError,
+	NotExistsError,
+	AlreadyInProcess,
+	WorldSyncError,
+}

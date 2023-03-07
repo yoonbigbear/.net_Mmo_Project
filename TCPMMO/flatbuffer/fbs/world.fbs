@@ -1,0 +1,87 @@
+include "common.fbs";
+include "type_code.fbs";
+include "stat.fbs";
+
+enum ObjectType : ubyte
+{
+	Player,
+	NonPlayer,
+}
+table EnterServerReq
+{
+	acct_id : int;
+}
+
+table EnterServerResp
+{
+	error_code : ErrorCode = 0;
+	char_list : [CharacterInfo];
+	stats : [StateSync];
+}
+table EnterLobbyReq // Enter server lobby
+{
+}
+
+table EnterLobbyResp
+{
+	error_code : ErrorCode = 0;
+	char_list : [CharacterInfo];
+}
+
+table EnterWorldReq	// Enter world
+{
+	world_id : uint;
+}
+
+table EnterWorldResp
+{
+	obj_id : uint;
+	transform : TransformInfo;
+	
+	other_obj_ids : [uint];
+	other_transforms : [TransformInfo];
+	other_stats : [StateSync];
+	object_types : [ObjectType];
+	object_tids : [int];
+	error_code : ErrorCode = 0;
+}
+
+table EnterWorldSync
+{
+	obj_id : uint;
+	transform : TransformInfo;
+	stat : StateSync;
+	
+	error_code : ErrorCode = 0;
+}
+
+table LeaveWorldSync
+{
+	obj_id : uint;
+	
+	error_code : ErrorCode = 0;
+}
+
+table MoveSceneReq
+{
+	world_id : uint;
+}
+
+table MoveSceneResp
+{
+	world_id : uint;
+	error_code : ErrorCode = 0;
+}
+
+table MovePortalReq
+{
+	portal_id : uint;
+}
+
+table MovePortalResp
+{
+	portal_id : uint;
+	world_id : uint;
+	error_code : ErrorCode = 0;
+}
+

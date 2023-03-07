@@ -1,0 +1,47 @@
+
+enum SyncVar64 : ubyte
+{
+	Hp,
+	MaxHp,
+	Damage,
+	Gold,
+	Exp,
+	End
+}
+struct Vec3
+{
+	x : float;
+	y : float;
+	z : float;
+}
+struct ItemInfo
+{
+	count : int;
+	t_id : uint;
+	db_id : ulong;
+}
+struct Currency
+{
+	gold : long;
+}
+struct TransformInfo
+{
+	speed : int;
+	cur_pos : Vec3;
+	end_pos : Vec3;
+	dir : Vec3;
+}
+table CharacterInfo
+{
+	db_id : ulong;
+	class_id : int;
+	name : string;
+	world_id : uint;
+}
+table TradeInfo
+{
+	obj_id : uint;
+	items : [ItemInfo];
+	money : Currency;
+	lock : bool;
+}

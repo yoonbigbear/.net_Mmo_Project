@@ -1,0 +1,8 @@
+include "common.fbs";
+include "type_code.fbs";
+
+
+table Heartbeat{}
+table TimeSync{
+	server_time : long;
+}

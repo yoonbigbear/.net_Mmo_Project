@@ -1,0 +1,19 @@
+include "common.fbs";
+include "type_code.fbs";
+
+table CreateCharacterReq
+{
+	name : string;
+	class_id : int;
+}
+
+table CreateCharacterResp
+{
+	character : CharacterInfo;
+	
+	keys : [int];		//state keys
+	values : [long];	//state values
+	
+	error_code : ErrorCode = 0;
+}
+

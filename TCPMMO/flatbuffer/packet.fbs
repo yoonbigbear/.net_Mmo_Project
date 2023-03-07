@@ -1,0 +1,284 @@
+enum PacketId : short
+{
+	Heartbeat = -1,
+	None = 0,
+	
+	TimeSync,
+	StateSync,
+
+	CreateCharacterReq,
+	CreateCharacterResp,
+	
+	EnterServerReq,
+	EnterServerResp,
+	EnterLobbyReq,
+	EnterLobbyResp,
+	EnterWorldReq,
+	EnterWorldResp,
+	EnterWorldSync,
+	LeaveWorldSync,
+	
+	TransformReq,
+	TransformResp,
+	TransformSync,
+	
+	AddItemReq,
+	AddItemResp,
+	
+	TradeRequestReq,
+	TradeRequestResp,
+	TradeAcceptReq,
+	TradeAcceptResp,
+	TradeBeginSync,
+	TradeSuccessSync,
+	TradeUpdateReq,
+	TradeUpdateSync,
+	TradeCancelReq,
+	TradeCancelSync,
+	
+	ChangeStateReq,
+	ChangeStateResp
+}
+enum ErrorCode : short
+{
+	UndefinedError = -1,
+	Success = 0,
+	SessionError,
+	PacketDataError,
+	DuplicatedError,
+	DatabaseError,
+	NotExistsError,
+	AlreadyInProcess,
+}
+enum SyncVar64 : ubyte
+{
+	Hp,
+	MaxHp,
+	Damage,
+	Gold,
+	Exp,
+	End
+}
+struct Vec3
+{
+	x : float;
+	y : float;
+	z : float;
+}
+struct ItemInfo
+{
+	count : int;
+	t_id : uint;
+	db_id : ulong;
+}
+struct Currency
+{
+	gold : long;
+}
+struct TransformInfo
+{
+	speed : int;
+	cur_pos : Vec3;
+	end_pos : Vec3;
+	dir : Vec3;
+}
+table CharacterInfo
+{
+	db_id : ulong;
+	class_id : int;
+	name : string;
+	world_id : int;
+}
+table TradeInfo
+{
+	obj_id : uint;
+	items : [ItemInfo];
+	money : Currency;
+	lock : bool;
+}
+
+
+
+
+table CreateCharacterReq
+{
+	name : string;
+	class_id : int;
+}
+
+table CreateCharacterResp
+{
+	character : CharacterInfo;
+	
+	keys : [int];		//state keys
+	values : [long];	//state values
+	
+	error_code : ErrorCode = 0;
+}
+
+
+
+table EnterServerReq
+{
+	acct_id : int;
+}
+table EnterServerResp
+{
+	error_code : ErrorCode = 0;
+	char_list : [CharacterInfo];
+}
+table EnterLobbyReq // Enter server lobby
+{
+}
+
+table EnterLobbyResp
+{
+	error_code : ErrorCode = 0;
+	char_list : [CharacterInfo];
+}
+
+table EnterWorldReq	// Enter world
+{
+	world_id : int;
+}
+
+table EnterWorldResp
+{
+	obj_id : uint;
+	transform : TransformInfo;
+	
+	other_obj_ids : [uint];
+	other_transforms : [TransformInfo];
+	
+	error_code : ErrorCode = 0;
+}
+
+table EnterWorldSync
+{
+	obj_id : uint;
+	transform : TransformInfo;
+	
+	error_code : ErrorCode = 0;
+}
+
+table LeaveWorldSync
+{
+	obj_id : uint;
+	
+	error_code : ErrorCode = 0;
+}
+
+
+
+
+table TransformReq
+{
+	transform : TransformInfo;
+}
+
+table TransformResp
+{
+	cur_pos : Vec3;
+	
+	error_code : ErrorCode = 0;
+}
+
+table TransformSync
+{
+	obj_id : uint;
+	transform : TransformInfo;
+}
+
+
+
+
+table AddItemReq
+{
+	ids : [uint];
+	values : [int];
+}
+
+table AddItemResp
+{
+	items : [ItemInfo];
+	
+	error_code : ErrorCode = 0;
+}
+
+
+table ChangeStateReq
+{
+	key : [int];
+	value : [long];
+}
+table ChangeStateResp
+{
+	error_code : ErrorCode = 0;
+}
+
+
+table StateSync
+{
+	keys : [int];
+	values : [long];
+}
+
+
+
+
+table TradeRequestReq
+{
+	obj_id : uint;
+}
+table TradeRequestResp
+{
+	error_code : ErrorCode = 0;
+}
+table TradeAcceptReq
+{
+	trade_id : uint;
+}
+table TradeAcceptResp
+{
+	trade_id : uint;
+	agreement : bool;
+}
+
+table TradeBeginSync
+{
+	trade_id : uint;
+}
+
+table TradeCancelReq
+{
+	trade_id : uint;
+}
+
+table TradeCancelSync
+{
+	trade_id : uint;
+}
+
+table TradeUpdateReq
+{
+	trade_id : uint;
+	tradeinfo : TradeInfo;
+}
+
+table TradeUpdateSync
+{
+	trade_id : uint;
+	tradeinfo : TradeInfo;
+}
+
+table TradeSeccessSync
+{
+	traders : [TradeInfo];
+}
+
+
+
+table Heartbeat{}
+table TimeSync{
+	server_time : long;
+}

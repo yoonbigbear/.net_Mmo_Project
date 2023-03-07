@@ -1,0 +1,9 @@
+include "common.fbs";
+include "type_code.fbs";
+
+table HitResp
+{
+	items : [ItemInfo];
+	
+	error_code : ErrorCode = 0;
+}

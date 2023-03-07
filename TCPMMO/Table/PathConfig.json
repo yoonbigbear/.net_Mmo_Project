@@ -1,0 +1,7 @@
+{
+	"TableData": "Table\\",
+	"ServerCsvOutput": "..\\TCPServer\\bin\\data\\",
+	"ClientCsvOutput": "..\\GraphicsClient\\genCsv\\",
+	"ServerCsOutput": "..\\TCPServer\\genCs\\",
+	"ClientCsOutput": "..\\GraphicsClient\\genCs\\"
+}

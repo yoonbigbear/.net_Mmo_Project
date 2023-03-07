@@ -1,0 +1,85 @@
+include "common.fbs";
+include "type_code.fbs";
+
+
+
+table AddItemReq
+{
+	ids : [uint];
+	values : [int];
+}
+
+table AddItemResp
+{
+	items : [ItemInfo];
+	
+	error_code : ErrorCode = 0;
+}
+
+table RemoveItemReq
+{
+	ids : [uint];
+	db_ids : [ulong];
+	values : [int];
+}
+table RemoveItemResp
+{
+	ids : [uint];
+	db_ids : [ulong];
+	values : [int];
+	
+	error_code : ErrorCode = 0;
+}
+
+
+
+table TradeRequestReq
+{
+	obj_id : uint;
+}
+table TradeRequestResp
+{
+	error_code : ErrorCode = 0;
+}
+table TradeAcceptReq
+{
+	trade_id : uint;
+}
+table TradeAcceptResp
+{
+	trade_id : uint;
+	agreement : bool;
+}
+
+table TradeBeginSync
+{
+	trade_id : uint;
+}
+
+table TradeCancelReq
+{
+	trade_id : uint;
+}
+
+table TradeCancelSync
+{
+	trade_id : uint;
+}
+
+table TradeUpdateReq
+{
+	trade_id : uint;
+	tradeinfo : TradeInfo;
+}
+
+table TradeUpdateSync
+{
+	trade_id : uint;
+	tradeinfo : TradeInfo;
+}
+
+table TradeSeccessSync
+{
+	traders : [TradeInfo];
+}
+

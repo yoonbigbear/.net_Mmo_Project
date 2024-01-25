@@ -1,7 +1,6 @@
 ## Intro
 
 단순히 이동 동기화 테스트 목적의 unity + C# tcp server
-Task 기반 Async 프로그래밍
 
 ### Used
  - [Custom .Net6 TcpCore](https://github.com/yoonbigbear/CSharp-TCP-Core)
